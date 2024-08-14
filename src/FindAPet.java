@@ -1,8 +1,4 @@
-/**
- * @author Dr Andreas Shepley (asheple2@une.edu.au | andreashepley01@gmail.com)
- * created for COSC120 (Trimester 1 2022)
- * last revised: Trimester 1 2024
- */
+
 
 import javax.swing.*;
 import java.io.IOException;
@@ -33,6 +29,7 @@ public class FindAPet {
         processSearchResults(petCriteria);
         System.exit(0);
     }
+
     /**
      * method to load all Pet data from file, storing it as Pet objects in an instance of AllPets
      * @return an AllPets object - functions as database of Pets, with associated methods
@@ -120,6 +117,28 @@ public class FindAPet {
     }
 
     /**
+     * generates JOptionPanes requesting user input for Pet breed, sex, de-sexed status and age
+     * @return a DreamPet object representing the user's desired Pet criteria
+     */
+    private static DreamPet getUserCriteria(){
+
+
+        Map<Criteria,Object> desiredFeatures = new HashMap<>();
+        desiredFeatures.put(Criteria.TYPE, type);
+        if(!breed.equals("NA")) desiredFeatures.put(Criteria.BREED,breed);
+        if(!sex.equals(Sex.NA)) desiredFeatures.put(Criteria.SEX,sex);
+        desiredFeatures.put(Criteria.DE_SEXED,deSexed);
+        if(!purebred.equals(Purebred.NA)) desiredFeatures.put(Criteria.PUREBRED,purebred);
+
+        if(type.equals(PetType.CAT)||type.equals(PetType.GUINEA_PIG)){
+
+            if(!hair.equals(Hair.NA)) desiredFeatures.put(Criteria.HAIR,hair);
+        }
+
+        return new DreamPet(desiredFeatures,ageRange[0],ageRange[1],feeRange[0],feeRange[1]);
+    }
+
+    /**
      * method to get user to input name, ph num and email, with appropriate input validation
      * @return a Person object representing the user of the program
      */
@@ -179,74 +198,9 @@ public class FindAPet {
         return matcher.matches();
     }
 
-    /**
-     * generates JOptionPanes requesting user input for Pet breed, sex, de-sexed status and age
-     * @return a DreamPet object representing the user's desired Pet criteria
-     */
-    private static DreamPet getUserCriteria(){
-        PetType type = (PetType) JOptionPane.showInputDialog(null,"Please select the type of pet you'd like to adopt.",appName, JOptionPane.QUESTION_MESSAGE,icon,PetType.values(), PetType.DOG);
-        if(type==null) System.exit(0);
 
-        String breed  = (String) JOptionPane.showInputDialog(null,"Please select your preferred breed.",appName, JOptionPane.QUESTION_MESSAGE,icon,allPets.getAllBreeds(type).toArray(),"");
-        if(breed==null) System.exit(0);
 
-        Sex sex = (Sex) JOptionPane.showInputDialog(null,"Please select your preferred sex:",appName, JOptionPane.QUESTION_MESSAGE,icon,Sex.values(),Sex.FEMALE);
-        if(sex==null) System.exit(0);
-        DeSexed deSexed = (DeSexed) JOptionPane.showInputDialog(null,"Would you like your Pet to be de-sexed or not?",appName, JOptionPane.QUESTION_MESSAGE,icon,DeSexed.values(),DeSexed.YES);
-        if(deSexed==null) System.exit(0);
-        Purebred purebred  = (Purebred) JOptionPane.showInputDialog(null,"Would you like the Pet to be a purebred?",appName, JOptionPane.QUESTION_MESSAGE,null,Purebred.values(), "");
-        if(purebred==null) System.exit(0);
 
-        double[] ageRange = minMaxValues("What is the age (years) of the youngest Pet you'd like to adopt?","What is the age (years) of the oldest Pet you'd be willing to adopt?");
-
-        Map<Criteria,Object> desiredFeatures = new HashMap<>();
-        desiredFeatures.put(Criteria.TYPE, type);
-        if(!breed.equals("NA")) desiredFeatures.put(Criteria.BREED,breed);
-        if(!sex.equals(Sex.NA)) desiredFeatures.put(Criteria.SEX,sex);
-        desiredFeatures.put(Criteria.DE_SEXED,deSexed);
-        if(!purebred.equals(Purebred.NA)) desiredFeatures.put(Criteria.PUREBRED,purebred);
-
-        if(type.equals(PetType.CAT)||type.equals(PetType.GUINEA_PIG)){
-            Hair hair  = (Hair) JOptionPane.showInputDialog(null,"Please select from the following options","Pinkman's Pet Finder", JOptionPane.QUESTION_MESSAGE,null,Hair.values(), "");
-            if(hair==null) System.exit(0);
-            if(!hair.equals(Hair.NA)) desiredFeatures.put(Criteria.HAIR,hair);
-        }
-        double[] feeRange = minMaxValues("What is the lowest adoption fee you're interested in? ","What is the max. adoption fee you're willing to pay?");
-        return new DreamPet(desiredFeatures,ageRange[0],ageRange[1],feeRange[0],feeRange[1]);
-    }
-
-    /**
-     * a method to get the user to enter a value range (min - max)
-     * @param minMessage the message to the user asking them to input a min value
-     * @param maxMessage the message to the user asking them to input a max value
-     * @return an int[] array where [0] is min and [1] is max
-     */
-    public static double[] minMaxValues(String minMessage, String maxMessage){
-        double[] range = {-1,-1};
-        while(range[0]<0) {
-            String input = JOptionPane.showInputDialog(null, minMessage, appName, JOptionPane.QUESTION_MESSAGE);
-            if(input==null) System.exit(0);
-            try {
-                range[0] = Double.parseDouble(input);
-                if(range[0]<0) JOptionPane.showMessageDialog(null,"Min. must be >= 0.",appName, JOptionPane.ERROR_MESSAGE);
-            }
-            catch (NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Invalid input. Please try again.", appName, JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        while(range[1]<range[0]) {
-            String input = JOptionPane.showInputDialog(null, maxMessage, appName, JOptionPane.QUESTION_MESSAGE);
-            if(input==null) System.exit(0);
-            try {
-                range[1] = Double.parseDouble(input);
-                if(range[1]<range[0]) JOptionPane.showMessageDialog(null,"Max must be >= "+range[0],appName, JOptionPane.ERROR_MESSAGE);
-            }
-            catch (NumberFormatException e){
-                JOptionPane.showMessageDialog(null,"Invalid input. Please try again.", appName, JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        return range;
-    }
 
     /**
      * method to display  results (if there are any) to the user in the form of a drop-down list
@@ -276,21 +230,5 @@ public class FindAPet {
                 "\n\tTo exit, click OK.", appName, JOptionPane.QUESTION_MESSAGE, icon);
     }
 
-    /**
-     * provides Pinkman's Pets with a file containing the user's adoption request
-     * @param person a Person object representing the user
-     * @param Pet a Pet object representing the Pet that the user wants to adopt
-     */
-    private static void writeAdoptionRequestToFile(Person person, Pet Pet) {
-        String filePath = person.name().replace(" ","_")+"_adoption_request.txt";
-        Path path = Path.of(filePath);
-        String lineToWrite = person.name()+" wishes to adopt "+Pet.name()+" ("+Pet.microchipNumber()+
-                "). Their phone number is "+person.phoneNumber()+" and their email address is "+person.emailAddress();
-        try {
-            Files.writeString(path, lineToWrite);
-        }catch (IOException io){
-            System.out.println("File could not be written. \nError message: "+io.getMessage());
-            System.exit(0);
-        }
-    }
+
 }
