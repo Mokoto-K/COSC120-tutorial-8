@@ -1,0 +1,51 @@
+type,name,microchip no,sex,desexed,age(years),breed,purebred,adoption fee,hair,training level,daily exercise (mins)
+dog,Frankie,647388745,female,yes,2,Dalmatian,yes,120.00,short,BASIC,90
+cat,Sprouts,456654567,male,yes,6,angora,no,45.00,long,NA,NA
+dog,Goldo,634928675,male,yes,3,Labrador,no,45.00,short,BASIC,80
+guinea pig,Mischa,784578475,male,yes,0,peruvian,no,15.50,long,NA,NA
+cat,Newton,205734525,male,yes,8,bobtail,no,25.00,short,NA,NA
+cat,Beaker,755938475,female,yes,2,sphynx,yes,150.00,hairless,NA,NA
+dog,Roughie,344563396,male,yes,3,Jack Russell,yes,60.00,short,INTERMEDIATE,45
+cat,Bella,253435745,female,yes,2,birman,no,90.00,short,NA,NA
+cat,Nala,285764765,female,yes,3,bengal,no,70.00,short,NA,NA
+dog,Chips,028566478,female,no,1,Bulldog,yes,120.00,short,NONE,50
+guinea pig,Abby,893594854,female,yes,0,abyssinian,yes,25.00,long,NA,NA
+cat,Smoker,789098567,male,no,5,bombay,yes,90.00,short,NA,NA
+dog,Chocco,485738499,male,no,4,pit bull,no,45.00,short,INTERMEDIATE,90
+dog,Milly,774657483,female,yes,6,rottweiler,yes,50.00,short,BASIC,90
+dog,Flint,883747274,male,yes,1,maremma,yes,120.00,long,NONE,60
+dog,Rocket,382909983,male,yes,4,labrador,yes,60.00,short,ADVANCED,70
+dog,Ripper,894475839,male,yes,5,jack russell,no,45.00,short,INTERMEDIATE,45
+cat,Fluffs,132432399,female,yes,4,russian blue,no,80.00,short,NA,NA
+dog,Lucky,902238956,female,yes,5,whippet,yes,60.00,short,INTERMEDIATE,60
+dog,Zeus,787493833,male,no,8,Rottweiler,no,20.00,short,BASIC,60
+dog,Teddy,456389093,male,yes,3,Pit bull,yes,45.00,short,BASIC,90
+dog,Bubbles,049584857,female,yes,4,German shepard,no,45.00,long,BASIC,90
+guinea pig,Snuffles,240384938,male,yes,1,rex,yes,35.00,short,NA,NA
+cat,Yoda,307986756,male,yes,6,donskoy,yes,180.00,hairless,NA,NA
+dog,Boomer,989343556,male,no,1,chihuahua,yes,120.00,short,ADVANCED,30
+cat,Willow,432543654,female,no,1,persian,no,80.00,long,NA,NA
+guinea pig,Hippo,148348340,female,yes,0,skinny,no,110.00,hairless,NA,NA
+cat,Hipchee,543654675,male,yes,2,sphynx,yes,120.00,hairless,NA,NA
+dog,Casper,778574657,male,yes,2,dalmatian,no,80.00,short,INTERMEDIATE,90
+dog,Rebel,778475747,female,no,4,golden retriever,yes,60.00,long,INTERMEDIATE,90
+dog,Bandit,893458787,male,no,1,jack russell,no,60.00,short,INTERMEDIATE,45
+dog,Evenball,908998763,male,yes,3,maremma,no,60.00,long,BASIC,60
+guinea pig,Jaws,530495847,female,yes,1,skinny,yes,150.00,hairless,NA,NA
+cat,Simba,960587678,male,yes,3,burmese,no,60.00,short,NA,NA
+cat,Pabu,346656563,male,no,4,bambino,yes,120.00,hairless,NA,NA
+dog,Pixy,778435462,female,yes,2,chihuahua,no,60.00,short,INTERMEDIATE,30
+dog,Banshee,334827309,female,yes,4,jack russell,yes,60.00,short,INTERMEDIATE,45
+cat,Sassy,347536967,female,no,1,ragdoll,no,80.00,long,NA,NA
+dog,Stardust,193838293,female,yes,7,bulldog,no,20.00,short,BASIC,30
+cat,Evie,564789098,female,yes,3,siamese,yes,150.00,short,NA,NA
+cat,Missy,789098785,female,no,3,ragdoll,yes,180.00,long,NA,NA
+dog,Bullet,897232846,male,no,10,labrador,no,0.00,short,BASIC,20
+guinea pig,Lynette,523049584,female,yes,0,sheltie,yes,130.00,long,NA,NA
+cat,Tigger,147876365,male,yes,2,sphynx,yes,120.00,hairless,NA,NA
+dog,Chester,340984457,male,yes,2,rottweiler,yes,80.00,short,INTERMEDIATE,120
+guinea pig,Trump,148348340,male,yes,0,american,no,18.00,short,NA,NA
+dog,Hunter,784758394,male,yes,5,jack russell,no,20.00,short,BASIC,35
+cat,Luna,495848332,female,yes,2,persian,no,60.00,long,NA,NA
+cat,Leo,394856283,male,yes,1,maine coon,no,120.00,long,NA,NA
+cat,Goryangi,432874342,female,yes,5,tortoiseshell,no,45.00,long,NA,NA
