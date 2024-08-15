@@ -164,61 +164,14 @@ public class FindAPet {
     }
 
     /**
-     * a very simple regex for full name in Firstname Surname format
-     * @param fullName the candidate full name entered by the user
-     * @return true if name matches regex/false if not
-     */
-    public static boolean isValidFullName(String fullName) {
-        String regex = "^[A-Z][a-z]+\\s[A-Z][a-zA-Z]+$";
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(fullName);
-        return matcher.matches();
-    }
-
-    /**
-     * a regex matcher that ensures that the user's entry starts with a 0 and is followed by 9 digits
-     * @param phoneNumber the candidate phone number entered by the user
-     * @return true if phone number matches regex/false if not
-     */
-    public static boolean isValidPhoneNumber(String phoneNumber) {
-        Pattern pattern = Pattern.compile("^0\\d{9}$");
-        Matcher matcher = pattern.matcher(phoneNumber);
-        return matcher.matches();
-    }
-
-    /**
-     * a regex matcher that ensures that the user's entry complies with RFC 5322
-     * source: <a href="https://www.baeldung.com/java-email-validation-regex">...</a>
-     * @param email the candidate email entered by the user
-     * @return true if email matches regex/false if not
-     */
-    public static boolean isValidEmail(String email) {
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
-        Matcher matcher = pattern.matcher(email);
-        return matcher.matches();
-    }
-
-
-
-
-
-    /**
      * method to display  results (if there are any) to the user in the form of a drop-down list
      * allowing them to select and adopt a pet of their choice.
      * @param dreamPet a DreamPet object representing the user's selections
      */
     private static void processSearchResults(DreamPet dreamPet){
         List<Pet> potentialMatches = allPets.findMatch(dreamPet);
-        if(potentialMatches.size()>0){
-            Map<String,Pet> options = new HashMap<>();
-            StringBuilder infoToShow = new StringBuilder("Matches found!! The following Pets meet your criteria: \n");
-            for (Pet potentialMatch : potentialMatches) {
-                infoToShow.append("\n").append(potentialMatch.toString(potentialMatch.dreamPet().getAllPetCriteriaAndValues()));
-                options.put(potentialMatch.name() + " (" + potentialMatch.microchipNumber() + ")", potentialMatch);
-            }
-            String adopt = (String) JOptionPane.showInputDialog(null,infoToShow+"\nPlease select which " +
-                    "Pet you'd like to adopt:",appName, JOptionPane.QUESTION_MESSAGE,icon,options.keySet().toArray(), "");
-            if(adopt==null) System.exit(0);
+
+
             else{
                 Pet chosenPet = options.get(adopt);
                 Person applicant = getUserDetails();

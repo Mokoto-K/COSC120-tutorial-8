@@ -4,6 +4,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public interface Subscription {
 
@@ -11,7 +13,7 @@ public interface Subscription {
     String appName = "Pinkman's Pets Pet Finder";
 
     // Moving the icon to be used by all j option panes into the interface
-    String iconPath = "./icon.jpg";
+    ImageIcon icon = new ImageIcon("./icon.jpg");
 
     // price for premium subscription
     int premiumSubscriptionFee =0;
@@ -23,7 +25,7 @@ public interface Subscription {
     float discount = 0.10f;
 
     // Gets all breeds for a type of animal
-    DreamPet getUserInput(Set<String> dogBreeds, PetType petType);
+    DreamPet getUserInput(Set<String> allBreeds, PetType petType);
 
     // Gets a list of pets that marches the user criteria
     Pet displayResults(List<Pet> matchedPets, Criteria[] criteria);
@@ -38,7 +40,7 @@ public interface Subscription {
         return type;
     }
 
-    default String getBreed(){
+    default String getBreed(Set<String> allbreeds){
         String breed  = (String) JOptionPane.showInputDialog(null,"Please select your preferred " +
                 "breed.",appName, JOptionPane.QUESTION_MESSAGE,icon,allPets.getAllBreeds(type).toArray(),"");
         if(breed==null) System.exit(0);
@@ -139,12 +141,12 @@ public interface Subscription {
     /**
      * provides Pinkman's Pets with a file containing the user's adoption request
      * @param person a Person object representing the user
-     * @param Pet a Pet object representing the Pet that the user wants to adopt
+     * @param pet a Pet object representing the Pet that the user wants to adopt
      */
-    private static void writeAdoptionRequestToFile(String preface, Person person, Pet Pet) {
+    default void writeAdoptionRequestToFile(String preface, Person person, Pet pet) {
         String filePath = preface+person.name().replace(" ","_")+"_adoption_request.txt";
         Path path = Path.of(filePath);
-        String lineToWrite = person.name()+" wishes to adopt "+Pet.name()+" ("+Pet.microchipNumber()+
+        String lineToWrite = person.name()+" wishes to adopt "+pet.name()+" ("+pet.microchipNumber()+
                 "). Their phone number is "+person.phoneNumber()+" and their email address is "+person.emailAddress();
         try {
             Files.writeString(path, lineToWrite);
@@ -153,4 +155,40 @@ public interface Subscription {
             System.exit(0);
         }
     }
+
+    /**
+     * a very simple regex for full name in Firstname Surname format
+     * @param fullName the candidate full name entered by the user
+     * @return true if name matches regex/false if not
+     */
+    public static boolean isValidFullName(String fullName) {
+        String regex = "^[A-Z][a-z]+\\s[A-Z][a-zA-Z]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(fullName);
+        return matcher.matches();
+    }
+
+    /**
+     * a regex matcher that ensures that the user's entry starts with a 0 and is followed by 9 digits
+     * @param phoneNumber the candidate phone number entered by the user
+     * @return true if phone number matches regex/false if not
+     */
+    public static boolean isValidPhoneNumber(String phoneNumber) {
+        Pattern pattern = Pattern.compile("^0\\d{9}$");
+        Matcher matcher = pattern.matcher(phoneNumber);
+        return matcher.matches();
+    }
+
+    /**
+     * a regex matcher that ensures that the user's entry complies with RFC 5322
+     * source: <a href="https://www.baeldung.com/java-email-validation-regex">...</a>
+     * @param email the candidate email entered by the user
+     * @return true if email matches regex/false if not
+     */
+    public static boolean isValidEmail(String email) {
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
 }

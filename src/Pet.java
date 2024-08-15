@@ -16,10 +16,10 @@ public record Pet(String name, long microchipNumber, int age, double adoptionFee
      * toString to return a description of a Pet, including all its unique and generic features
      * @return String
      */
-    public String toString(Map<Criteria,Object> petCriteria){
+    public String toString(Criteria[] criteria){
         DecimalFormat df = new DecimalFormat("0.00");
         return this.name()+" ("+this.microchipNumber()+ ") is a "+this.age()+" year old "+
-                this.dreamPet().getDreamPetDescription(petCriteria)+
+                this.dreamPet().getDreamPetDescription(criteria)+
                 ".\n > Adoption fee: $"+df.format(this.adoptionFee())+"\n";
     }
 }

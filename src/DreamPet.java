@@ -80,9 +80,9 @@ public class DreamPet {
      * method to return a description of generic DreamPet features
      * @return a formatted String description of the pet's dream features
      */
-    public String getDreamPetDescription(Map<Criteria,Object> criteria){
+    public String getDreamPetDescription(Criteria[] criteria){
         StringBuilder description= new StringBuilder();
-        for(Criteria key: criteria.keySet()) description.append("\n").append(key).append(": ").append(getValueAtCriteria(key));
+        for(Criteria key: criteria) description.append("\n").append(key).append(": ").append(getValueAtCriteria(key));
         return description.toString();
     }
 
