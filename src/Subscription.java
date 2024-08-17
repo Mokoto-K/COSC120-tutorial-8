@@ -42,7 +42,7 @@ public interface Subscription {
 
     default String getBreed(Set<String> allbreeds){
         String breed  = (String) JOptionPane.showInputDialog(null,"Please select your preferred " +
-                "breed.",appName, JOptionPane.QUESTION_MESSAGE,icon,allPets.getAllBreeds(type).toArray(),"");
+                "breed.",appName, JOptionPane.QUESTION_MESSAGE,icon,allbreeds.toArray(),"");
         if(breed==null) System.exit(0);
         return breed;
     }
@@ -161,7 +161,7 @@ public interface Subscription {
      * @param fullName the candidate full name entered by the user
      * @return true if name matches regex/false if not
      */
-    public static boolean isValidFullName(String fullName) {
+    default boolean isValidFullName(String fullName) {
         String regex = "^[A-Z][a-z]+\\s[A-Z][a-zA-Z]+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(fullName);
@@ -173,7 +173,7 @@ public interface Subscription {
      * @param phoneNumber the candidate phone number entered by the user
      * @return true if phone number matches regex/false if not
      */
-    public static boolean isValidPhoneNumber(String phoneNumber) {
+    default boolean isValidPhoneNumber(String phoneNumber) {
         Pattern pattern = Pattern.compile("^0\\d{9}$");
         Matcher matcher = pattern.matcher(phoneNumber);
         return matcher.matches();
@@ -185,7 +185,7 @@ public interface Subscription {
      * @param email the candidate email entered by the user
      * @return true if email matches regex/false if not
      */
-    public static boolean isValidEmail(String email) {
+    default boolean isValidEmail(String email) {
         Pattern pattern = Pattern.compile("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$");
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();

@@ -15,7 +15,7 @@ public class Premium implements Subscription{
     Map<String, Person> premiumUserAccounts = new HashMap<>();
 
     public Premium(String premiumUserDataFile){
-        this.premiumUserDataFile = "premiumUser.txt";
+        this.premiumUserDataFile = premiumUserDataFile;
         this.criteria = new HashMap<>();
         this.premiumUserAccounts = new HashMap<>();
 

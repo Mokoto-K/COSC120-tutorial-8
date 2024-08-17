@@ -37,7 +37,7 @@ public class AllPets {
         for(Pet pet: this.allPets){
             if(!pet.dreamPet().compareDreamPets(petCriteria)) continue;
             if(pet.age()<petCriteria.getMinAge() || pet.age()> petCriteria.getMaxAge()) continue;
-            if(pet.adoptionFee()<petCriteria.getMinFee() || pet.adoptionFee()> petCriteria.getMaxFee()) continue;
+            if(pet.adoptionFee()<petCriteria.getMinFee() || pet.adoptionFee()> petCriteria.getMaxFee() || petCriteria.getMinFee()==-1) continue;
             compatiblePets.add(pet);
         }
          return compatiblePets;

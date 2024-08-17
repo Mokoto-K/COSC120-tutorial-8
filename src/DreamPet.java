@@ -33,6 +33,12 @@ public class DreamPet {
         this.petCriteria = new HashMap<>(petCriteria);
     }
 
+    public DreamPet(Map<Criteria,Object> petCriteria, double minAge, double maxAge) {
+        this.petCriteria=new HashMap<>(petCriteria);
+        this.minAge = minAge;
+        this.maxAge = maxAge;
+    }
+
     /**
      * access all the key-value pairs, e.g. breed: jack russell, sex: female, etc.
      * @return the entire mapping of criteria and their values
