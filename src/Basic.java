@@ -66,4 +66,4 @@ public class Basic implements Subscription{
             writeAdoptionRequestToFile("unverified", user, usersChoice);
         }
     }
-}
+
